@@ -3,7 +3,7 @@ body {
   text-align: center;
   margin: 0;
   padding: 0;
-  background-color: #f4f4f4;
+  background-color: hsl(31, 49%, 63%);
 }
 
 .app {
@@ -15,7 +15,7 @@ body {
   margin: 20px;
   padding: 20px;
   background-color: white;
-  border-radius: 10px;
+  border-radius: 16px;
   display: inline-block;
 }
 
@@ -23,13 +23,13 @@ body {
   padding: 10px 20px;
   font-size: 1em;
   border: none;
-  background-color: #007bff;
-  color: white;
+  background-color: #b6a93a;
+  color: black;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 15px;
   margin-top: 20px;
 }
 
 .fetch-button:hover {
-  background-color: #0056b3;
+  background-color: #a7b300;
 }

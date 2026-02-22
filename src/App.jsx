@@ -1,28 +1,38 @@
 import { useState, useEffect } from 'react'
 import JokeDisplay from './components/JokeDisplay'
 import FetchButton from './components/FetchButton'
+import './App.css'
 
 function App() {
-  // Step 1: Create state variables for `joke` and `loading`
+  const [joke, setJoke] = useState('')       // stores the joke text
+  const [loading, setLoading] = useState(true) // loading state
 
-  // Step 2: Use `useEffect` to call a function that fetches a joke when the component mounts
+  const fetchJoke = () => {
+    setLoading(true)
+    fetch('https://v2.jokeapi.dev/joke/Programming?type=single')
+      .then((res) => res.json())
+      .then((data) => {
+        setJoke(data.joke)
+        setLoading(false)
+      })
+      .catch(() => {
+        setJoke('Oops! Something went wrong.')
+        setLoading(false)
+      })
+  }
 
-  // Step 3: Define a function that fetches a programming joke from an API
-  // - Start by setting `loading` to true
-  // - Fetch a joke from "https://v2.jokeapi.dev/joke/Programming?type=single"
-  // - Update the `joke` state with the fetched joke
-  // - Set `loading` to false once the joke is loaded
-  // - Handle any errors in the `.catch` block
+  // useEffect to fetch a joke on first render
+  useEffect(() => {
+    fetchJoke()
+  }, [])
 
   return (
     <div className="app">
-      <h1>Programming Jokes</h1>
-      {/* Step 4: Pass the necessary props to JokeDisplay */}
-      <JokeDisplay />
-      {/* Step 5: Pass the function to FetchButton so it can fetch a new joke on click */}
-      <FetchButton />
+      <h1>Code Giggles</h1>
+      <JokeDisplay joke={joke} loading={loading} />
+      <FetchButton fetchJoke={fetchJoke} />
     </div>
   )
 }
 
-export default App
+export default App;
